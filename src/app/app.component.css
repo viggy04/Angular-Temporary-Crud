@@ -1,0 +1,11 @@
+.addUser{
+    position:relative;
+    right:100px;
+}
+.deleteBtn{
+    color: blue;
+    margin:5px
+}
+.deleteBtn:hover{
+    color:white;
+}

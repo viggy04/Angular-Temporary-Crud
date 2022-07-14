@@ -1,0 +1,70 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Crud App In Angular</a>
+
+        <button type="button" class="btn btn-primary" (click)="addOrEdit=!addOrEdit" data-bs-toggle="modal"
+            data-bs-target="#exampleModal1">
+            Add User
+        </button>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <!-- <h5 class="modal-title" id="exampleModalLabel"> Add User </h5> -->
+                        <h5 class="modal-title" id="exampleModalLabel"> {{addOrEdit ? 'Add User': 'Edit User'}} </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Enter your name:<input type="text" [(ngModel)]="user">
+                    </div>
+                    <div class="modal-footer">
+                        <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+                        <button type="button" class="btn btn-primary" *ngIf="addOrEdit" (click)="addData(user)">Add User
+                        </button>
+                        <button type="button" class="btn btn-primary" *ngIf="!addOrEdit" (click)="editData(user)">Edit User
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Delete</th>
+                <th scope="col">Update</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let d of primaryData;let i = index;">
+                <!-- <tr > -->
+                <td> {{i+1}} </td>
+                <td>{{d}} </td>
+
+                <td><button class="btn btn-danger" (click)="deleteData(i)">Delete</button></td>
+                <!-- <td><button class="btn btn-warning" (click)="updateData(i)">Update</button></td> -->
+                <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" (click)="addOrEdit=!addOrEdit"
+                        (click)="updateData(i)" data-bs-target="#exampleModal1">Update</button></td>
+            </tr>
+
+        </tbody>
+    </table>
+</div>
+
+<!-- <div *ngIf="displayUpdate">
+    <form>
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Update Name</label>
+        <input type="email" class="form-control" [placeholder]="dataToBeEdited" id="exampleInputEmail1"
+            aria-describedby="emailHelp" [(ngModel)]="editedName">
+    </div>
+    <button type="submit" class="btn btn-primary" (click)="editData(editedName)">Edit</button>
+    </form>
+</div> -->
